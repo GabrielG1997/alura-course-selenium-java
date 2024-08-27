@@ -10,26 +10,26 @@ import org.junit.jupiter.api.Test;
 
 import br.com.alura.leilao.login.LoginPage;
 
-public class LeiloesTest {
+class LeiloesTest {
 
 	private LeiloesPage paginaDeLeiloes;
 	private CadastroLeilaoPage paginaDeCadastroDeLeilao;
 
 	@BeforeEach
-	public void beforeEach() {
+	void beforeEach() {
 		LoginPage paginaDeLogin = new LoginPage();
 		this.paginaDeLeiloes = paginaDeLogin.efetuarLogin("fulano", "pass");
 		this.paginaDeCadastroDeLeilao = paginaDeLeiloes.carregarFormulario();
 	}
 
 	@AfterEach
-	public void afterEach() {
+	void afterEach() {
 		this.paginaDeLeiloes.fechar();
 		this.paginaDeCadastroDeLeilao.fechar();
 	}
 
 	@Test
-	public void deveriaCadastrarLeilao() {
+	void deveriaCadastrarLeilao() {
 		String hoje = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		String nomeLeilao = "Leilao do dia " + hoje;
 		String valorInicial = "500.00";
@@ -40,7 +40,7 @@ public class LeiloesTest {
 	}
 
 	@Test
-	public void deveriaExecutarValidacaoAoCadastrarLeilaoComDadosInvalidos() {
+	void deveriaExecutarValidacaoAoCadastrarLeilaoComDadosInvalidos() {
 		this.paginaDeLeiloes = paginaDeCadastroDeLeilao.cadastrarLeilao("", "", "");
 
 		Assert.assertFalse(paginaDeCadastroDeLeilao.isPaginaAtual());

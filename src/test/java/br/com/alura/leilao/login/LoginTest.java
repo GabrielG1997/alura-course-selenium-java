@@ -7,22 +7,22 @@ import org.junit.jupiter.api.Test;
 
 import br.com.alura.leilao.lance.LancesPage;
 
-public class LoginTest {
+class LoginTest {
 
 	private LoginPage paginaDeLogin;
 
 	@BeforeEach
-	public void beforeEach() {
+	void beforeEach() {
 		this.paginaDeLogin = new LoginPage();
 	}
 
 	@AfterEach
-	public void afterEach() {
+	void afterEach() {
 		this.paginaDeLogin.fechar();
 	}
 
 	@Test
-	public void deveriaEfetuarLoginComDadosValidos() {
+	void deveriaEfetuarLoginComDadosValidos() {
 		paginaDeLogin.efetuarLogin("fulano", "pass");
 
 		String nomeUsuarioLogado = paginaDeLogin.getNomeUsuarioLogado();
@@ -31,7 +31,7 @@ public class LoginTest {
 	}
 
 	@Test
-	public void naoDeveriaEfetuarLoginComDadosInvalidos() {
+	void naoDeveriaEfetuarLoginComDadosInvalidos() {
 		paginaDeLogin.efetuarLogin("invalido", "1233");
 
 		Assert.assertNull(paginaDeLogin.getNomeUsuarioLogado());
@@ -40,7 +40,7 @@ public class LoginTest {
 	}
 
 	@Test
-	public void naoDeveriaAcessarUrlRestritaSemEstarLogado() {
+	void naoDeveriaAcessarUrlRestritaSemEstarLogado() {
 		LancesPage paginaDeLances = new LancesPage();
 
 		Assert.assertFalse(paginaDeLances.isPaginaAtual());
